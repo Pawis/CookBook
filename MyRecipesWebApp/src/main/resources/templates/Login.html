@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	crossorigin="anonymous">
+
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container">
+	<h3>Please sign in</h3>
+		<form action="#" th:action="@{/Login}" method=POST>
+			<div class="mb-3">
+				<input type="text" name="username" placeholder="Username "
+					class="form-control">
+			</div>
+			<div class="mb-3">
+				<input type="password" name="password" placeholder="Password"
+					class="form-control">
+			</div>
+			<button type="submit" class="btn btn-primary">Login</button>
+			<a th:href="@{/}"
+			class="btn btn-danger" >Back</a>
+			
+		</form>
+
+	</div>
+
+</body>
+</html>

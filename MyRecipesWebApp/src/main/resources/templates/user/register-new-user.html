@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+	crossorigin="anonymous">
+
+<title>Insert title here</title>
+</head>
+<body>
+
+	<div style="float: right" class="container">
+
+		<h3>New User Registration</h3>
+		<br>
+		<form action="#" th:action="@{/processRegister}"
+			th:object="${user}" method="POST">
+			<input type="text" th:field="*{username}" placeholder="Username"
+				class="form-control mb-4 col-4">
+			<input type="text" th:field="*{password}" placeholder="Password"
+				class="form-control mb-4 col-4">
+			<input type="text" th:field="*{firstName}" placeholder="First Name"
+				class="form-control mb-4 col-4"> 
+			<input type="text" th:field="*{lastName}" placeholder="Last Name"
+				class="form-control mb-4 col-4"> 
+			<button type="submit" class="btn btn-info col-2">Save</button>
+			<a th:href="@{/}" class="btn btn-danger col-2 ">Back</a>
+		</form>
+		<br>
+	</div>
+
+</body>
+</html>
