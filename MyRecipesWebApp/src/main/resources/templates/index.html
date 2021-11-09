@@ -16,7 +16,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<div sec:authorize="isAuthenticated()"> 
+    Authenticated user roles:
+    Logged user: <span sec:authentication="name"></span> |
+    Roles: <span sec:authentication="principal.authorities"></span>
+</div>
 	<div class="container text-center">
 		<h1>Welcome on My Page</h1>
 		<h3>

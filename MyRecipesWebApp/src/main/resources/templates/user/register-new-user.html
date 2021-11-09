@@ -12,7 +12,11 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
 	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
 	crossorigin="anonymous">
-
+<style>
+    .error {
+        color: red;
+    }
+</style>
 <title>Insert title here</title>
 </head>
 <body>
@@ -21,16 +25,46 @@
 
 		<h3>New User Registration</h3>
 		<br>
-		<form action="#" th:action="@{/processRegister}"
-			th:object="${user}" method="POST">
-			<input type="text" th:field="*{username}" placeholder="Username"
-				class="form-control mb-4 col-4">
-			<input type="text" th:field="*{password}" placeholder="Password"
-				class="form-control mb-4 col-4">
-			<input type="text" th:field="*{firstName}" placeholder="First Name"
+		
+		<form action="#" th:action="@{/processRegister}" th:object="${user}"
+			method="POST">
+			
+			<label type="text" >Username</label>
+			<b>
+			<p th:if="${#fields.hasErrors('username')}" th:errorclass="error"
+					th:errors="*{username}" />
+			</b>
+				<input type="text" th:field="*{username}"
+					class="form-control mb-4 col-4">
+			<div>
+			
+			<label type="text" >Password</label>
+			<b>
+			<p th:if="${#fields.hasErrors('password')}" th:errorclass="error"
+					th:errors="*{password}" />
+					</b>
+			<input type="text" th:field="*{password}" 
 				class="form-control mb-4 col-4"> 
-			<input type="text" th:field="*{lastName}" placeholder="Last Name"
+			</div>
+			<div>
+			<label type="text" >First Name</label>
+			<b>
+			<p th:if="${#fields.hasErrors('firstName')}" th:errorclass="error"
+					th:errors="*{firstName}" />
+					</b>
+				<input type="text" th:field="*{firstName}" 
 				class="form-control mb-4 col-4"> 
+				
+			</div>
+			<div>
+			<label type="text" >Last Name</label>
+			<b>
+			<p th:if="${#fields.hasErrors('lastName')}" th:errorclass="error"
+					th:errors="*{lastName}" />
+				<input type="text" th:field="*{lastName}" 
+				class="form-control mb-4 col-4">
+				</b>
+			</div>
 			<button type="submit" class="btn btn-info col-2">Save</button>
 			<a th:href="@{/}" class="btn btn-danger col-2 ">Back</a>
 		</form>

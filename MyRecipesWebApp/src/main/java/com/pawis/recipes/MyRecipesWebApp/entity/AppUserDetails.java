@@ -2,6 +2,7 @@ package com.pawis.recipes.MyRecipesWebApp.entity;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -43,6 +44,11 @@ public class AppUserDetails implements UserDetails {
 	@Override
 	public String getPassword() {
 		return user.getPassword();
+	}
+	
+	
+	public int getId() {
+		return user.getId();
 	}
 
 	@Override

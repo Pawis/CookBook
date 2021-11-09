@@ -24,23 +24,30 @@
 		<br>
 		<form action="#" th:action="@{/user/updateUser}" th:object="${user}"
 			method="POST">
-			<input type="hidden" th:field="*{password}"> <input
-				type="hidden" th:field="*{id}"> <input typ="text"
-				th:field="*{username}" placeholder="Username"
-				class="form-control mb-4 col-4"> <input typ="text"
-				th:field="*{firstName}" placeholder="First Name"
-				class="form-control mb-4 col-4"> <input typ="text"
-				th:field="*{lastName}" placeholder="Last Name"
+			<input type="hidden" th:field="*{password}">
+			<input type="hidden" th:field="*{id}">
+			<div sec:authorize="hasAuthority('ADMIN')"> 
+			<label type="text" >Username</label>
+				<input typ="text" th:field="*{username}" placeholder="First Name"
+				class="form-control mb-4 col-4"> 
+				</div>
+				<label type="text" >First Name</label>
+				<input typ="text" th:field="*{firstName}" placeholder="First Name"
+				class="form-control mb-4 col-4"> 
+				<label type="text" >Last Name</label>
+				<input typ="text" th:field="*{lastName}" placeholder="Last Name"
 				class="form-control mb-4 col-4">
+				
+				<div sec:authorize="hasAuthority('ADMIN')"> 
 		 	<div class="form-group row">
 				<label class="col-form-label col-1">Assigned Roles</label>
 				<div class="col-8">
 					<th:block th:each="role : ${roles}">
-						<input type="checkbox" name="roles" th:field="*{roles}"
+						<input type="radio" name="roles" th:field="*{roles}"
 							th:value="${role.id}" th:text=${role.name} class= "m-2"/>
 					</th:block>
 				</div>
-
+</div>
 		</div>
 		
 			<button type="submit" class="btn btn-info col-2">Save</button>

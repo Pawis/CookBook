@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,11 +18,11 @@ import com.pawis.recipes.MyRecipesWebApp.service.UserServiceImpl1;
 
 @Configuration
 @EnableWebSecurity
+@EnableJpaRepositories(basePackages = "com.pawis.recipes.MyRecipesWebApp.dao")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	
 	@Autowired
-	@Qualifier("appDataSource")
 	private DataSource securityDataSource;
 
 	@Autowired
@@ -58,15 +59,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/").permitAll()
 		.antMatchers("/Login").permitAll()
 		.antMatchers("/register").permitAll()
+		.antMatchers("/user/register-new-user").permitAll()
+		.antMatchers("/processRegister").permitAll()
+		.antMatchers("/login/oauth2/code/github").permitAll()
 		.anyRequest().authenticated()
 		.and()
+		//.oauth2Login()
+		//.loginPage("/Login")
+		//.and()
 		.formLogin()
 		.loginPage("/Login")
 		.loginProcessingUrl("/Login")
 		.defaultSuccessUrl("/user/userList")
 		.permitAll()
 		.and()
-		.logout().permitAll();
+		.rememberMe()
+		.and()
+		.logout().logoutSuccessUrl("/").permitAll();
 		
 	}
 	

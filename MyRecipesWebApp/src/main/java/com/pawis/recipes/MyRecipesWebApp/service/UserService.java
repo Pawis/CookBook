@@ -10,7 +10,7 @@ public interface UserService {
 
 	public User saveUser(User user);
 
-	public List<User> getUsers();
+	public List<User> getUsers(String keyword);
 	
 	public User getUser(int id);
 	
@@ -19,5 +19,5 @@ public interface UserService {
 	public List<Role> getRoles();
 	
 	public User UpdatUserWithRole(User user);
-
+	
 }

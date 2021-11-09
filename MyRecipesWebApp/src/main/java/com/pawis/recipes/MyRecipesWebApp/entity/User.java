@@ -2,7 +2,6 @@ package com.pawis.recipes.MyRecipesWebApp.entity;
 
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -16,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "users")
@@ -26,22 +27,26 @@ public class User implements Serializable {
 	@Column(name = "id")
 	private int id;
 
+	@NotEmpty(message = "Cannot be empty")
 	@Column(name = "first_name")
 	private String firstName;
 
+	@NotEmpty(message = "Cannot be empty")
 	@Column(name = "last_name")
 	private String lastName;
 
+	@Size(min = 3, max = 10, message = "Must be longer than 3 and shorter than 10")
 	@Column(name = "username")
 	private String username;
 
+	@Size(min = 4, message = "Must be longer than 4 ")
 	@Column(name = "password")
 	private String password;
 
-	@ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH}, fetch = FetchType.EAGER)
+	@ManyToMany(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
+			CascadeType.REFRESH }, fetch = FetchType.EAGER)
 	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "roles_id"))
 	private Set<Role> roles;
-
 
 	public User() {
 
@@ -111,7 +116,7 @@ public class User implements Serializable {
 			roles = new HashSet<>();
 		roles.add(role);
 	}
-	
+
 	public void removeRole(Role role) {
 		roles.remove(role);
 	}

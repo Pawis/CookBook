@@ -16,8 +16,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div sec:authorize="isAuthenticated()"> 
+    Authenticated user roles:
+    Logged user: <span sec:authentication="name"></span> |
+    Roles: <span sec:authentication="principal.authorities"></span>
+</div>
 	<div class="container">
-	<h3>Please sign in</h3>
+		<h3>Please sign in</h3>
 		<form action="#" th:action="@{/Login}" method=POST>
 			<div class="mb-3">
 				<input type="text" name="username" placeholder="Username "
@@ -27,10 +32,19 @@
 				<input type="password" name="password" placeholder="Password"
 					class="form-control">
 			</div>
+			<div th:if="${param.error}" class="alert alert-danger">Invalid
+				username or password.</div>
 			<button type="submit" class="btn btn-primary">Login</button>
-			<a th:href="@{/}"
-			class="btn btn-danger" >Back</a>
 			
+			<a th:href="@{/register}" class="btn btn-success">Register New Account</a>
+			<!--  
+			<hr>
+			<p >
+			Login using OAuth  
+			<a th:href="@{/oauth2/authorization/google}" class="btn btn-info">Google</a>
+			<a th:href="@{/oauth2/authorization/github}" class="btn btn-info">GitHub</a>
+			</p>
+             -->
 		</form>
 
 	</div>
