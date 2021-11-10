@@ -1,9 +1,6 @@
 package com.pawis.recipes.MyRecipesWebApp.config;
 
-import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -20,10 +17,6 @@ import com.pawis.recipes.MyRecipesWebApp.service.UserServiceImpl1;
 @EnableWebSecurity
 @EnableJpaRepositories(basePackages = "com.pawis.recipes.MyRecipesWebApp.dao")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-
-	
-	@Autowired
-	private DataSource securityDataSource;
 
 	@Autowired
 	private UserServiceImpl1 userService;

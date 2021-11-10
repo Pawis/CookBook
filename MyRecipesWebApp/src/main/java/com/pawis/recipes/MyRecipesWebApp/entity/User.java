@@ -18,6 +18,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "users")
 public class User implements Serializable {

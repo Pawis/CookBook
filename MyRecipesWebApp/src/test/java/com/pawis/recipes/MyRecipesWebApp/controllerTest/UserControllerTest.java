@@ -1,7 +1,5 @@
 package com.pawis.recipes.MyRecipesWebApp.controllerTest;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
@@ -15,7 +13,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.pawis.recipes.MyRecipesWebApp.controller.UserController;
-import com.pawis.recipes.MyRecipesWebApp.entity.User;
 import com.pawis.recipes.MyRecipesWebApp.service.UserService;
 
 @WebMvcTest(UserController.class)
