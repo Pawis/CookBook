@@ -1,3 +1,2 @@
-Simple CRUD project with Security and Authentication
-<br>
--- Currently working on REST Api
+Prosta aplikacja pozwalajaca na zarejestrowanie sie i zalogowanie z uzyciem: 
+Spring Boot JpaRepository Hibernate MySql Spring Security i Spring Validation
