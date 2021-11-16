@@ -6,6 +6,9 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +22,7 @@ import com.pawis.recipes.MyRecipesWebApp.entity.UserDTO;
 import com.pawis.recipes.MyRecipesWebApp.expections.UserNotFoundException;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService , UserDetailsService{
 
 	@Autowired
 	private UsersRepository userRepo;
@@ -30,6 +33,18 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+		Optional<User> user = userRepo.findUserByUsername(username);
+
+		if (user.isPresent()) {
+			return new AppUserDetails(user.get());
+		} else {
+			throw new UsernameNotFoundException("User Not Found");
+		}
+
+	}
 	@Override
 	@Transactional
 	public User saveUser(User user) {

@@ -11,15 +11,16 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.pawis.recipes.MyRecipesWebApp.service.UserServiceImpl;
 import com.pawis.recipes.MyRecipesWebApp.service.UserServiceImpl1;
 
 @Configuration
 @EnableWebSecurity
-@EnableJpaRepositories(basePackages = "com.pawis.recipes.MyRecipesWebApp.dao")
+//@EnableJpaRepositories(basePackages = "com.pawis.recipes.MyRecipesWebApp.dao")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
-	private UserServiceImpl1 userService;
+	private UserServiceImpl userService;
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {

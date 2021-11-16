@@ -1,7 +1,8 @@
 package com.pawis.recipes.MyRecipesWebApp.controllerTest;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
@@ -10,67 +11,55 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.pawis.recipes.MyRecipesWebApp.controller.UserController;
-import com.pawis.recipes.MyRecipesWebApp.service.UserService;
+import com.pawis.recipes.MyRecipesWebApp.entity.Role;
+import com.pawis.recipes.MyRecipesWebApp.entity.User;
+import com.pawis.recipes.MyRecipesWebApp.service.UserServiceImpl;
 
-@WebMvcTest(UserController.class)
+
+@WebMvcTest(UserController.class )
+//@Import(SecurityConfig.class)
+@ContextConfiguration(classes = {UserServiceImpl.class })
 public class UserControllerTest {
 
 	@Autowired
 	private MockMvc mockMvc;
 
 	@MockBean
-	private UserService userService;
+	private UserServiceImpl userService;
 	
-
+	
 	@Test
-	void showNewUserFormShouldIncludeUserTest() throws Exception {
+	//@WithUserDetails(value="Pawis")
+	@WithMockUser(authorities ="ADMIN")
+	void shouldReturnViewWithPrefilledData() throws Exception {
+		/*
+		User user = new User();
+		user.setFirstName("testFirst");
+		user.setLastName("testLast");
+		user.setPassword("test");
+		user.setUsername("testUsername");
+		user.setId(1);
+		Role roleUSER = new Role(1,"USER");
+		Set<Role> roles = new HashSet<>();
+		roles.add(roleUSER);
+		user.setRoles(roles);
+		*/
 		
-		mockMvc.perform(get("/user/showNewUserForm"))
-		.andExpect(model().attributeExists("user"))
-		.andExpect(model().size(1));
-	}
-	@Test
-	void showNewUserFormRedirectTest() throws Exception {
-	
-		mockMvc.perform(get("/user/showNewUserForm"))
+		when(userService.getUser(1)).thenReturn(new User());
+		
+		this.mockMvc
+		.perform(get("/user/updateUser?userId=124"))
 		.andExpect(status().isOk())
-		.andExpect(view().name("user/new-user-form"));
+        .andExpect(view().name("update-user-form"))
+        .andExpect(model().attribute("user", any(User.class)))
+		.andExpect(model().attribute("roles", new Role()));
 	}
-	
-	
-	@Test
-	void processNewUserRedirectTest() throws Exception{
-		
-		mockMvc.perform(post("/user/processNewUser"))
-		.andExpect(status().is3xxRedirection())
-		.andExpect(view().name("redirect:userList"))
-		;
-	}
-	
-	@Test
-	void userListRedirectTest() throws Exception{
-		
-	    mockMvc.perform(get("/user/userList"))
-	    .andExpect(status().isOk())
-	    .andExpect(view().name("user/user-list"))
-	    ;
-	}
-	/*
-	@Test
-	void updateUserRedirectTest() throws Exception {
 
-		mockMvc.perform(get("/user/updateUser"))
-		.andExpect(status().isOk())
-		.andExpect(view().name("user/new-user-form"))
-		.andExpect(model().attributeExists("UserId"));
-	}
-	*/
-	
-	
-	
 
 
 
