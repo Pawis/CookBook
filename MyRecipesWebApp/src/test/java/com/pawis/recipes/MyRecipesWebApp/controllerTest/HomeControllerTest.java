@@ -12,8 +12,6 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.pawis.recipes.MyRecipesWebApp.config.SecurityConfig;
 import com.pawis.recipes.MyRecipesWebApp.controller.HomeController;
-import com.pawis.recipes.MyRecipesWebApp.dao.UsersRepository;
-import com.pawis.recipes.MyRecipesWebApp.service.UserService;
 import com.pawis.recipes.MyRecipesWebApp.service.UserServiceImpl;
 
 @WebMvcTest(HomeController.class )
