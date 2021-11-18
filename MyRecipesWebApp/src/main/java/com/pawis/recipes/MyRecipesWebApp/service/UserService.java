@@ -21,6 +21,6 @@ public interface UserService {
 	
 	public User UpdatUserWithRole(User user);
 	
-	public UserDetails loadUserByUsername(String username);
+	//public UserDetails loadUserByUsername(String username);
 	
 }

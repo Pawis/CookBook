@@ -22,7 +22,7 @@ import com.pawis.recipes.MyRecipesWebApp.entity.UserDTO;
 import com.pawis.recipes.MyRecipesWebApp.expections.UserNotFoundException;
 
 @Service
-public class UserServiceImpl implements UserService , UserDetailsService{
+public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UsersRepository userRepo;
@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService , UserDetailsService{
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-
+	/*
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
@@ -45,6 +45,7 @@ public class UserServiceImpl implements UserService , UserDetailsService{
 		}
 
 	}
+	*/
 	@Override
 	@Transactional
 	public User saveUser(User user) {

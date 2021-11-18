@@ -25,6 +25,14 @@ public class AppUserDetails implements UserDetails {
 	public void setLastName(String lastName) {
 		this.user.setLastName(lastName);
 	}
+	public String getFirstName() {
+		 return this.user.getFirstName();
+	}
+
+	public String getLastName() {
+		return this.user.getLastName();
+	}
+	
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

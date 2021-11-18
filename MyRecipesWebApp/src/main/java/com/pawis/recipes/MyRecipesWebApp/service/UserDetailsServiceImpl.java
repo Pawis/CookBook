@@ -3,6 +3,9 @@ package com.pawis.recipes.MyRecipesWebApp.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -12,8 +15,8 @@ import com.pawis.recipes.MyRecipesWebApp.dao.UsersRepository;
 import com.pawis.recipes.MyRecipesWebApp.entity.AppUserDetails;
 import com.pawis.recipes.MyRecipesWebApp.entity.User;
 
-// @Service
-public class UserServiceImpl1 implements UserDetailsService {
+@Service("userDetailsService")
+public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired
 	private UsersRepository userRepo;

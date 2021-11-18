@@ -1,18 +1,26 @@
 package com.pawis.recipes.MyRecipesWebApp.config;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
+import com.pawis.recipes.MyRecipesWebApp.entity.AppUserDetails;
+import com.pawis.recipes.MyRecipesWebApp.entity.Role;
+import com.pawis.recipes.MyRecipesWebApp.entity.User;
 import com.pawis.recipes.MyRecipesWebApp.service.UserServiceImpl;
-import com.pawis.recipes.MyRecipesWebApp.service.UserServiceImpl1;
+import com.pawis.recipes.MyRecipesWebApp.service.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
@@ -20,7 +28,9 @@ import com.pawis.recipes.MyRecipesWebApp.service.UserServiceImpl1;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
-	private UserServiceImpl userService;
+	private UserDetailsServiceImpl userService;
+	
+	
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -45,7 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 	
-
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
