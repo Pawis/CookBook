@@ -15,11 +15,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.pawis.recipes.MyRecipesWebApp.dao.RoleRepository;
 import com.pawis.recipes.MyRecipesWebApp.dao.UsersRepository;
-import com.pawis.recipes.MyRecipesWebApp.entity.AppUserDetails;
 import com.pawis.recipes.MyRecipesWebApp.entity.Role;
 import com.pawis.recipes.MyRecipesWebApp.entity.User;
 import com.pawis.recipes.MyRecipesWebApp.entity.UserDTO;
 import com.pawis.recipes.MyRecipesWebApp.expections.UserNotFoundException;
+import com.pawis.recipes.MyRecipesWebApp.security.AppUserDetails;
 
 @Service
 public class UserServiceImpl implements UserService {

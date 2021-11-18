@@ -16,11 +16,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
-import com.pawis.recipes.MyRecipesWebApp.entity.AppUserDetails;
 import com.pawis.recipes.MyRecipesWebApp.entity.Role;
 import com.pawis.recipes.MyRecipesWebApp.entity.User;
+import com.pawis.recipes.MyRecipesWebApp.security.AppUserDetails;
+import com.pawis.recipes.MyRecipesWebApp.security.UserDetailsServiceImpl;
 import com.pawis.recipes.MyRecipesWebApp.service.UserServiceImpl;
-import com.pawis.recipes.MyRecipesWebApp.service.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity

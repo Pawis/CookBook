@@ -24,11 +24,11 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import com.pawis.recipes.MyRecipesWebApp.config.SecurityConfig;
 import com.pawis.recipes.MyRecipesWebApp.controller.UserController;
-import com.pawis.recipes.MyRecipesWebApp.entity.AppUserDetails;
 import com.pawis.recipes.MyRecipesWebApp.entity.Role;
 import com.pawis.recipes.MyRecipesWebApp.entity.User;
+import com.pawis.recipes.MyRecipesWebApp.security.AppUserDetails;
+import com.pawis.recipes.MyRecipesWebApp.security.UserDetailsServiceImpl;
 import com.pawis.recipes.MyRecipesWebApp.service.UserServiceImpl;
-import com.pawis.recipes.MyRecipesWebApp.service.UserDetailsServiceImpl;
 
 @WebMvcTest(UserController.class )
 @Import(CustomUserDetailService.class)

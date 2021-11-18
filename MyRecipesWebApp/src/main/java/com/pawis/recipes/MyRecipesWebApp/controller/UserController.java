@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.pawis.recipes.MyRecipesWebApp.entity.AppUserDetails;
 import com.pawis.recipes.MyRecipesWebApp.entity.Role;
 import com.pawis.recipes.MyRecipesWebApp.entity.User;
+import com.pawis.recipes.MyRecipesWebApp.security.AppUserDetails;
 import com.pawis.recipes.MyRecipesWebApp.service.UserService;
 
 @Controller

@@ -1,4 +1,4 @@
-package com.pawis.recipes.MyRecipesWebApp.entity;
+package com.pawis.recipes.MyRecipesWebApp.security;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -8,6 +8,9 @@ import java.util.Set;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.pawis.recipes.MyRecipesWebApp.entity.Role;
+import com.pawis.recipes.MyRecipesWebApp.entity.User;
 
 @SuppressWarnings("serial")
 public class AppUserDetails implements UserDetails {

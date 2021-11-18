@@ -1,4 +1,4 @@
-package com.pawis.recipes.MyRecipesWebApp.service;
+package com.pawis.recipes.MyRecipesWebApp.security;
 
 import java.util.Optional;
 
@@ -12,7 +12,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.pawis.recipes.MyRecipesWebApp.dao.UsersRepository;
-import com.pawis.recipes.MyRecipesWebApp.entity.AppUserDetails;
 import com.pawis.recipes.MyRecipesWebApp.entity.User;
 
 @Service("userDetailsService")
