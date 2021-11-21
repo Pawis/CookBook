@@ -15,9 +15,8 @@ import com.pawis.recipes.MyRecipesWebApp.security.AppUserDetails;
 @TestConfiguration
 public class CustomUserDetailService {
 	
-	@Bean("userDetailsService")
-	@Primary
-	public UserDetailsService userDetailsService() {
+	@Bean("userDetailsServiceAdmin")
+	public UserDetailsService userDetailsServiceAdmin() {
 
 		class UserWithDetails implements UserDetailsService {
 
@@ -25,8 +24,8 @@ public class CustomUserDetailService {
 			public UserDetails loadUserByUsername(String username)  {
 				User user = new User();
 				user.setId(2);
-				user.setFirstName("admin1");
-				user.setLastName("admin2");
+				user.setFirstName("adminFirst");
+				user.setLastName("adminLast");
 				user.setUsername("admin");
 				user.setPassword("admin");
 				Role roles = new Role(1, "ADMIN");
@@ -41,5 +40,27 @@ public class CustomUserDetailService {
 	
 	}
 	
+	@Bean("userDetailsServiceUser")
+	public UserDetailsService userDetailsServiceUser() {
 
+		class UserWithDetails implements UserDetailsService {
+
+			@Override
+			public UserDetails loadUserByUsername(String username)  {
+				User user = new User();
+				user.setId(2);
+				user.setFirstName("userFirst");
+				user.setLastName("userLast");
+				user.setUsername("userName");
+				user.setPassword("userPass");
+				Role roles = new Role(1, "USER");
+				user.addRole(roles);
+				AppUserDetails userDetails = new AppUserDetails(user);
+				return userDetails;
+			}
+			
+		}
+		return new UserWithDetails();
+	
+	}
 }

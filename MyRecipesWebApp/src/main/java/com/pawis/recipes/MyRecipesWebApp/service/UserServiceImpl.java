@@ -136,10 +136,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	@Transactional
-	public void deleteUser(int id) {
+	public String deleteUser(int id) {
 		AppUserDetails auth = (AppUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if (auth.getId() != id)
 			userRepo.deleteById(id);
+		return "SUCCESS";
 	}
 
 }

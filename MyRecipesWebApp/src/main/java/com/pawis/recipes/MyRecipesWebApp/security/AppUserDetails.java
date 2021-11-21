@@ -61,6 +61,10 @@ public class AppUserDetails implements UserDetails {
 	public int getId() {
 		return user.getId();
 	}
+	
+	public Set<Role> getRoles() {
+		return user.getRoles();
+	}
 
 	@Override
 	public boolean isAccountNonExpired() {
@@ -81,5 +85,13 @@ public class AppUserDetails implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "AppUserDetails [user=" + user + "]";
+	}
+
+	
+	
 
 }

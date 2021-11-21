@@ -38,7 +38,7 @@ public class UserController {
 	 * return "user/user-list"; }
 	 */
 
-	// TODO: Use session to store user details instead of hidden fileds in html.
+	// TODO: Use session to store user sensitive data instead of hidden fileds in html.
 	@GetMapping("/updateUser")
 	public String updateUser(@RequestParam("userId") int theId, Model model) {
 		User user = userService.getUser(theId);
@@ -49,6 +49,7 @@ public class UserController {
 		return "user/update-user-form";
 	}
 
+	//TODO: User cant modify own roles.
 	@PostMapping("/updateUser")
 	public String updateUser(@Valid @ModelAttribute("user") User user, BindingResult br,
 			@AuthenticationPrincipal AppUserDetails loggedUser, Model model) {
@@ -63,7 +64,7 @@ public class UserController {
 		AppUserDetails auth = (AppUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if (auth.getId() != user.getId())
 			userService.UpdatUserWithRole(user);
-
+	
 		return "redirect:userList";
 	}
 

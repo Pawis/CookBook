@@ -60,7 +60,6 @@ public class HomeController {
 		try {
 			userService.saveUser(user);
 		} catch (Exception e) {
-			System.out.println(e);
 			bindingResult.rejectValue("username", "user.username", " An account alredy exists for this username");
 			user.setPassword(null);
 			model.addAttribute("registrationForm", user);
