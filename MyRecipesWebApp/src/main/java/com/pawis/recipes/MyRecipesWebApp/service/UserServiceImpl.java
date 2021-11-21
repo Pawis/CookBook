@@ -24,35 +24,32 @@ import com.pawis.recipes.MyRecipesWebApp.security.AppUserDetails;
 @Service
 public class UserServiceImpl implements UserService {
 
-	//@Autowired
+	// @Autowired
 	private UsersRepository userRepo;
 
-	//@Autowired
+	// @Autowired
 	private RoleRepository roleRepo;
 
-	//@Autowired
+	// @Autowired
 	private PasswordEncoder passwordEncoder;
+
 	/*
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
-		Optional<User> user = userRepo.findUserByUsername(username);
-
-		if (user.isPresent()) {
-			return new AppUserDetails(user.get());
-		} else {
-			throw new UsernameNotFoundException("User Not Found");
-		}
-
-	}
-	*/
+	 * @Override public UserDetails loadUserByUsername(String username) throws
+	 * UsernameNotFoundException {
+	 * 
+	 * Optional<User> user = userRepo.findUserByUsername(username);
+	 * 
+	 * if (user.isPresent()) { return new AppUserDetails(user.get()); } else { throw
+	 * new UsernameNotFoundException("User Not Found"); }
+	 * 
+	 * }
+	 */
 	public UserServiceImpl(UsersRepository userRepo, RoleRepository roleRepo, PasswordEncoder passwordEncoder) {
 		this.userRepo = userRepo;
 		this.roleRepo = roleRepo;
 		this.passwordEncoder = passwordEncoder;
 	}
-	
-	
+
 	@Override
 	@Transactional
 	public User saveUser(User user) {
@@ -71,15 +68,13 @@ public class UserServiceImpl implements UserService {
 		userRepo.save(user);
 		return user;
 	}
-/*
-	@Override
-	@Transactional
-	public List<User> searchUsersBy(String findBy) {
-
-		List<User> users = userRepo.findByKeyword(findBy);
-		return users;
-	}
-	*/
+	/*
+	 * @Override
+	 * 
+	 * @Transactional public List<User> searchUsersBy(String findBy) {
+	 * 
+	 * List<User> users = userRepo.findByKeyword(findBy); return users; }
+	 */
 
 	@Override
 	@Transactional
@@ -116,30 +111,30 @@ public class UserServiceImpl implements UserService {
 
 		return user;
 	}
-	
+
 	public List<UserDTO> getUserDTOs() {
 		return getUsers(null)
 				.stream()
-				.map(this::convertUsertoUserDTO)
+				.map(UserDTO::new)
 				.collect(Collectors.toList());
 	}
-	
+
 	public UserDTO getSingleUserDTO(int id) {
-		return convertUsertoUserDTO(getUser(id));
+		UserDTO userDTO = new UserDTO(getUser(id));
+		return  userDTO;
 		
 	}
-	
-	
-	private UserDTO convertUsertoUserDTO(User user) {
-		
-		UserDTO userDto = new UserDTO();
-		userDto.setId(user.getId());
-		userDto.setFirstName(user.getFirstName());		
-		userDto.setLastName(user.getLastName());
-		return userDto;
-			
-		
-	}
+
+	/*
+	 * private UserDTO convertUsertoUserDTO(User user) {
+	 * 
+	 * UserDTO userDto = new UserDTO(); userDto.setId(user.getId());
+	 * userDto.setFirstName(user.getFirstName());
+	 * userDto.setLastName(user.getLastName()); return userDto;
+	 * 
+	 * 
+	 * }
+	 */
 
 	@Override
 	@Transactional

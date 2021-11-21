@@ -132,7 +132,7 @@ public class UserServiceTest {
 		assertEquals("User id not found - 1", thrown.getMessage());
 	}
 	
-	/*
+	
 	@Test
 	void getUsersDTOsTest() {
 		User user = new User();
@@ -141,7 +141,7 @@ public class UserServiceTest {
 		user.setId(1);
 		ArrayList<User> users = new ArrayList<>();
 		users.add(user);
-		UserDTO userDto = new UserDTO();
+		UserDTO userDto = new UserDTO(user);
 		
 		ArrayList<UserDTO> usersDTO = new ArrayList<>();
 		
@@ -152,23 +152,24 @@ public class UserServiceTest {
 		
 	}
 	
+	//TODO:
+	/*
 	@Test
 	void getUserDTOTest() {
 		
 		User user = new User();
 		user.setId(1);
+		Optional<User> userOptional = Optional.ofNullable(user);
 		
-		UserDTO userDto = new UserDTO();
+		UserDTO userDto = new UserDTO(user);
 		
+		when(userRepo.findById(1)).thenReturn(userOptional);
+		when(userService.getUser(1)).thenReturn(user);
 		when(userService.getSingleUserDTO(1)).thenReturn(userDto);
 		
 		assertEquals(userService.getSingleUserDTO(1),userDto);
 	}
 	*/
-	
-	
-	
-	
 	
 	
 }
