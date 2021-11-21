@@ -31,6 +31,7 @@ public class HomeController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (auth.isAuthenticated())
 		return "redirect:user/userList";
+		
 		return "/Login";
 	}
 
@@ -41,6 +42,7 @@ public class HomeController {
 
 	@GetMapping("/Login")
 	public String loginForm() {
+	
 		return "/Login";
 	}
 

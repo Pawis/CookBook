@@ -24,13 +24,13 @@ import com.pawis.recipes.MyRecipesWebApp.security.AppUserDetails;
 @Service
 public class UserServiceImpl implements UserService {
 
-	@Autowired
+	//@Autowired
 	private UsersRepository userRepo;
 
-	@Autowired
+	//@Autowired
 	private RoleRepository roleRepo;
 
-	@Autowired
+	//@Autowired
 	private PasswordEncoder passwordEncoder;
 	/*
 	@Override
@@ -46,6 +46,13 @@ public class UserServiceImpl implements UserService {
 
 	}
 	*/
+	public UserServiceImpl(UsersRepository userRepo, RoleRepository roleRepo, PasswordEncoder passwordEncoder) {
+		this.userRepo = userRepo;
+		this.roleRepo = roleRepo;
+		this.passwordEncoder = passwordEncoder;
+	}
+	
+	
 	@Override
 	@Transactional
 	public User saveUser(User user) {
