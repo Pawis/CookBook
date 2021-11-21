@@ -12,7 +12,11 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
 	integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
 	crossorigin="anonymous">
-
+<style>
+    .error {
+        color: red;
+    }
+</style>
 <title>Insert title here</title>
 </head>
 <body>
@@ -30,14 +34,25 @@
 			<label type="text" >Username</label>
 				<input typ="text" th:field="*{username}" placeholder="First Name"
 				class="form-control mb-4 col-4"> 
+					<b>
+			<p th:if="${#fields.hasErrors('username')}" th:errorclass="error"
+					th:errors="*{username}" />
+			</b>
 				</div>
 				<label type="text" >First Name</label>
 				<input typ="text" th:field="*{firstName}" placeholder="First Name"
 				class="form-control mb-4 col-4"> 
+					<b>
+			<p th:if="${#fields.hasErrors('firstName')}" th:errorclass="error"
+					th:errors="*{firstName}" />
+					</b>
 				<label type="text" >Last Name</label>
 				<input typ="text" th:field="*{lastName}" placeholder="Last Name"
 				class="form-control mb-4 col-4">
-				
+				<b>
+			<p th:if="${#fields.hasErrors('lastName')}" th:errorclass="error"
+					th:errors="*{lastName}" />
+						</b>
 				<div sec:authorize="hasAuthority('ADMIN')"> 
 		 	<div class="form-group row">
 				<label class="col-form-label col-1">Assigned Roles</label>

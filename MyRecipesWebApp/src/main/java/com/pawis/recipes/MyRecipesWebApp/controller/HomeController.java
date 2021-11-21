@@ -53,7 +53,6 @@ public class HomeController {
 	@PostMapping("/processRegister")
 	public String processRegisterForm(@Valid User user, BindingResult bindingResult, Model model) {
 		
-		System.out.println(bindingResult.hasErrors());
 		if (bindingResult.hasErrors()) {
 			
 			return "/user/register-new-user";

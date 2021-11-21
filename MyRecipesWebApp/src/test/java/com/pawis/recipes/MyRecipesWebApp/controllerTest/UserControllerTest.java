@@ -73,6 +73,7 @@ public class UserControllerTest {
 		Authentication auth =  SecurityContextHolder.getContext().getAuthentication();
 		System.out.println(auth.getPrincipal().toString());
 		mockMvc.perform(post("/user/updateUser").flashAttr("user", user));
+
 		
 	}
 	

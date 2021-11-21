@@ -22,7 +22,7 @@ public class CustomUserDetailService {
 		class UserWithDetails implements UserDetailsService {
 
 			@Override
-			public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+			public UserDetails loadUserByUsername(String username)  {
 				User user = new User();
 				user.setId(2);
 				user.setFirstName("admin1");
@@ -40,5 +40,6 @@ public class CustomUserDetailService {
 		
 	
 	}
+	
 
 }

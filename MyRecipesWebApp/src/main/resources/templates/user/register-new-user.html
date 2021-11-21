@@ -61,9 +61,9 @@
 			<b>
 			<p th:if="${#fields.hasErrors('lastName')}" th:errorclass="error"
 					th:errors="*{lastName}" />
+						</b>
 				<input type="text" th:field="*{lastName}" 
 				class="form-control mb-4 col-4">
-				</b>
 			</div>
 			<button type="submit" class="btn btn-info col-2">Save</button>
 			<a th:href="@{/}" class="btn btn-danger col-2 ">Back</a>
