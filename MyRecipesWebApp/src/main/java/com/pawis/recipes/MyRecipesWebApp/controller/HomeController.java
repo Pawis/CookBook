@@ -23,8 +23,14 @@ import com.pawis.recipes.MyRecipesWebApp.service.UserService;
 @Controller
 public class HomeController {
 
-	@Autowired
+	//@Autowired
 	private UserService userService;
+	
+	
+
+	public HomeController(UserService userService) {
+		this.userService = userService;
+	}
 
 	@RequestMapping("/")
 	public String mainMenu(Model model) {
