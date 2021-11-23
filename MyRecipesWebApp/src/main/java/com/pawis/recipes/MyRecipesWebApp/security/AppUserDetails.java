@@ -1,4 +1,4 @@
-package com.pawis.recipes.MyRecipesWebApp.entity;
+package com.pawis.recipes.MyRecipesWebApp.security;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -8,6 +8,9 @@ import java.util.Set;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.pawis.recipes.MyRecipesWebApp.entity.Role;
+import com.pawis.recipes.MyRecipesWebApp.entity.User;
 
 @SuppressWarnings("serial")
 public class AppUserDetails implements UserDetails {
@@ -25,6 +28,14 @@ public class AppUserDetails implements UserDetails {
 	public void setLastName(String lastName) {
 		this.user.setLastName(lastName);
 	}
+	public String getFirstName() {
+		 return this.user.getFirstName();
+	}
+
+	public String getLastName() {
+		return this.user.getLastName();
+	}
+	
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -50,6 +61,10 @@ public class AppUserDetails implements UserDetails {
 	public int getId() {
 		return user.getId();
 	}
+	
+	public Set<Role> getRoles() {
+		return user.getRoles();
+	}
 
 	@Override
 	public boolean isAccountNonExpired() {
@@ -70,5 +85,13 @@ public class AppUserDetails implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "AppUserDetails [user=" + user + "]";
+	}
+
+	
+	
 
 }

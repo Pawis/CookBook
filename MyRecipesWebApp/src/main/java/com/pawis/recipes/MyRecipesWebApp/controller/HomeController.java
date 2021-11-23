@@ -23,14 +23,21 @@ import com.pawis.recipes.MyRecipesWebApp.service.UserService;
 @Controller
 public class HomeController {
 
-	@Autowired
+	//@Autowired
 	private UserService userService;
+	
+	
+
+	public HomeController(UserService userService) {
+		this.userService = userService;
+	}
 
 	@RequestMapping("/")
 	public String mainMenu(Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		if (auth.isAuthenticated())
 		return "redirect:user/userList";
+		
 		return "/Login";
 	}
 
@@ -41,6 +48,7 @@ public class HomeController {
 
 	@GetMapping("/Login")
 	public String loginForm() {
+	
 		return "/Login";
 	}
 
@@ -52,7 +60,7 @@ public class HomeController {
 
 	@PostMapping("/processRegister")
 	public String processRegisterForm(@Valid User user, BindingResult bindingResult, Model model) {
-
+		
 		if (bindingResult.hasErrors()) {
 			
 			return "/user/register-new-user";
@@ -60,7 +68,6 @@ public class HomeController {
 		try {
 			userService.saveUser(user);
 		} catch (Exception e) {
-			System.out.println(e);
 			bindingResult.rejectValue("username", "user.username", " An account alredy exists for this username");
 			user.setPassword(null);
 			model.addAttribute("registrationForm", user);

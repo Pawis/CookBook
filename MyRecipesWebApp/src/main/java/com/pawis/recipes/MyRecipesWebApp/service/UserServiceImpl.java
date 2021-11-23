@@ -6,29 +6,49 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.pawis.recipes.MyRecipesWebApp.dao.RoleRepository;
 import com.pawis.recipes.MyRecipesWebApp.dao.UsersRepository;
-import com.pawis.recipes.MyRecipesWebApp.entity.AppUserDetails;
 import com.pawis.recipes.MyRecipesWebApp.entity.Role;
 import com.pawis.recipes.MyRecipesWebApp.entity.User;
 import com.pawis.recipes.MyRecipesWebApp.entity.UserDTO;
 import com.pawis.recipes.MyRecipesWebApp.expections.UserNotFoundException;
+import com.pawis.recipes.MyRecipesWebApp.security.AppUserDetails;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-	@Autowired
+	// @Autowired
 	private UsersRepository userRepo;
 
-	@Autowired
+	// @Autowired
 	private RoleRepository roleRepo;
 
-	@Autowired
+	// @Autowired
 	private PasswordEncoder passwordEncoder;
+
+	/*
+	 * @Override public UserDetails loadUserByUsername(String username) throws
+	 * UsernameNotFoundException {
+	 * 
+	 * Optional<User> user = userRepo.findUserByUsername(username);
+	 * 
+	 * if (user.isPresent()) { return new AppUserDetails(user.get()); } else { throw
+	 * new UsernameNotFoundException("User Not Found"); }
+	 * 
+	 * }
+	 */
+	public UserServiceImpl(UsersRepository userRepo, RoleRepository roleRepo, PasswordEncoder passwordEncoder) {
+		this.userRepo = userRepo;
+		this.roleRepo = roleRepo;
+		this.passwordEncoder = passwordEncoder;
+	}
 
 	@Override
 	@Transactional
@@ -48,15 +68,13 @@ public class UserServiceImpl implements UserService {
 		userRepo.save(user);
 		return user;
 	}
-/*
-	@Override
-	@Transactional
-	public List<User> searchUsersBy(String findBy) {
-
-		List<User> users = userRepo.findByKeyword(findBy);
-		return users;
-	}
-	*/
+	/*
+	 * @Override
+	 * 
+	 * @Transactional public List<User> searchUsersBy(String findBy) {
+	 * 
+	 * List<User> users = userRepo.findByKeyword(findBy); return users; }
+	 */
 
 	@Override
 	@Transactional
@@ -93,37 +111,38 @@ public class UserServiceImpl implements UserService {
 
 		return user;
 	}
-	
+
 	public List<UserDTO> getUserDTOs() {
 		return getUsers(null)
 				.stream()
-				.map(this::convertUsertoUserDTO)
+				.map(UserDTO::new)
 				.collect(Collectors.toList());
 	}
-	
+
 	public UserDTO getSingleUserDTO(int id) {
-		return convertUsertoUserDTO(getUser(id));
-		
-	}
-	
-	
-	private UserDTO convertUsertoUserDTO(User user) {
-		
-		UserDTO userDto = new UserDTO();
-		userDto.setId(user.getId());
-		userDto.setFirstName(user.getFirstName());		
-		userDto.setLastName(user.getLastName());
-		return userDto;
-			
+		UserDTO userDTO = new UserDTO(getUser(id));
+		return  userDTO;
 		
 	}
 
+	/*
+	 * private UserDTO convertUsertoUserDTO(User user) {
+	 * 
+	 * UserDTO userDto = new UserDTO(); userDto.setId(user.getId());
+	 * userDto.setFirstName(user.getFirstName());
+	 * userDto.setLastName(user.getLastName()); return userDto;
+	 * 
+	 * 
+	 * }
+	 */
+
 	@Override
 	@Transactional
-	public void deleteUser(int id) {
+	public String deleteUser(int id) {
 		AppUserDetails auth = (AppUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if (auth.getId() != id)
 			userRepo.deleteById(id);
+		return "SUCCESS";
 	}
 
 }

@@ -16,6 +16,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @SuppressWarnings("serial")
@@ -29,10 +30,12 @@ public class User implements Serializable {
 	private int id;
 
 	@NotEmpty(message = "Cannot be empty")
+	@Pattern(regexp= "^[A-Za-z]*$", message="Please use letters")
 	@Column(name = "first_name")
 	private String firstName;
 
 	@NotEmpty(message = "Cannot be empty")
+	@Pattern(regexp= "^[A-Za-z]*$", message="Please use letters")
 	@Column(name = "last_name")
 	private String lastName;
 
