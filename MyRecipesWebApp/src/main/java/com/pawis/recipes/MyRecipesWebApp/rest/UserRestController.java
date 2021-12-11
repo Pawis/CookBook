@@ -30,5 +30,7 @@ public class UserRestController {
 		
 		return userSErvice.getSingleUserDTO(userId);
 	}
+	
+	
 }
 
