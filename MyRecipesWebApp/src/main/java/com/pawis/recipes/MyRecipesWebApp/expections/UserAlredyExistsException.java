@@ -16,5 +16,4 @@ public class UserAlredyExistsException extends RuntimeException{
 	}
 	
 	
-
 }

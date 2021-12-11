@@ -9,5 +9,7 @@ public class MyRecipesWebAppApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MyRecipesWebAppApplication.class, args);
 	}
+	
+	
 
 }

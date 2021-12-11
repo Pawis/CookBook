@@ -66,6 +66,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/user/register-new-user").permitAll()
 		.antMatchers("/processRegister").permitAll()
 		.antMatchers("/login/oauth2/code/github").permitAll()
+		.antMatchers("/api/users/*").permitAll()
 		.anyRequest().authenticated()
 		.and()
 		//.oauth2Login()
